@@ -1,6 +1,6 @@
 var db = require('../server/db.js');
 
-exports.dummyData = function () {
+module.exports = (function () {
 
 	db.Organization.create({
 		username: 'Toiletz',
@@ -44,4 +44,5 @@ exports.dummyData = function () {
 			OrganizationId: 1
 		},
 	])
-}
+
+})();
