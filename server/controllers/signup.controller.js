@@ -28,7 +28,6 @@ module.exports = {
             dbHelper.insertData(req, res, table, newEmployee)
               .then(function(employee) {
                 var token = jwt.sign(employee, secret.SECRET), {
-                  expiresIn: 1440 * 90,
                   username: username,
                   organizationId: organizationId,
                   wardenName: wardenName
@@ -46,10 +45,10 @@ module.exports = {
         });
     },
     put: function(req, res) {
-      res.edn('Received PUT signup');
+      res.end('Received PUT signup');
     },
     delete: function(req, res) {
-      res.edn('Received DELETE signup');
+      res.end('Received DELETE signup');
     }
   }
 }
