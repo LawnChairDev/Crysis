@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div>hello</div>
+    <script>
+    fetch('http://localhost:3000/api/mobile/emergencyStatus', { 'method': 'GET'
+    })
+    .then(function(response){
+      if(!response.ok){
+        return response.text().then(function(errorMessage){
+          console.log(errorMessage, "logged in promise");
+          throw Error(response.statusText);
+        })
+      } else {
+        return response;
+      }
+    })
+    .then(function(anotherResponse){
+      console.log(anotherResponse, "another response");
+    })
+    .catch(function(error){
+      console.log(error, "this is an error");
+    })
+    </script>
+  </body>
+</html>
