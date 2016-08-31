@@ -1,12 +1,13 @@
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var mLab = require('./mLab-url.js');
 var schema = require('./schema.js');
 var Employee = schema.Employee;
 var Org = schema.Organization;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://M0ssMan:gravytrain@ds013014.mlab.com:13014/supersand');
+mongoose.connect(mLab);
 
 Org.create(
   {

@@ -1,8 +1,9 @@
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
+var mLab = require('./mLab-url.js');
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://M0ssMan:gravytrain@ds013014.mlab.com:13014/supersand');
+mongoose.connect(mLab);
 
 mongoose.connection.on('connected', function(){
   console.log("Mongoose connection open")
