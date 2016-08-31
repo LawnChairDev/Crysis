@@ -4,7 +4,7 @@ webClient/compiled/
 
 server/env/config.js
 
-server/keys/cert.pem
-server/keys/key.pem
+cert.pem
+key.pem
 
 .DS_Store
