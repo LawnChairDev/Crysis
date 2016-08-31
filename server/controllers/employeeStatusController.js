@@ -15,7 +15,7 @@ module.exports = {
       })
   },
   "PUT": function(req, res){
-    Employee.update({ userName: req.user.userName}, { status: "inDanger"})
+    Employee.update({ userName: req.user.userName}, { status: req.body.status})
       .then(function(){
         console.log('employeeStatus updated successfully');
         res.status(200).send('employeeStatus updated successfully');
