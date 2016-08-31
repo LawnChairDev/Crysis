@@ -4,7 +4,7 @@ var Employee = require('../db/schema.js')['Employee'];
 module.exports = {
   "GET": function(req, res){
     console.log(req.user);
-    Employee.find({ orgName: req.user.orgName}, '-_id -__v')
+    Employee.find({ orgName: req.user.orgName}, '-_id name status wardenName')
       .then(function(result){
         console.log('result in get of employeeStatus', result);
         res.status(200).send(result);
