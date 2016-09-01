@@ -1,31 +1,36 @@
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-var router = require('./router/router.js');
-var testRouter = require('./router/testRouter.js');
-// var dummyData = require('./db/dummyData.js');
+var db = require('./db/db.js');
+var indexRouter = require('./routers/--index--Router.js');
+var noRoute = require('./routers/404Router.js');
+var expressJWT = require('express-jwt');
 
 app.use(bodyParser.json());
 
-app.use(express.static('./'));
-
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-  res.header('Access-Control-Allow-Headers', 'x-access-token, Content-Type, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name');
-  next();
-});
-
 app.set('port', process.env.PORT || 3000);
 
-// app.use('/api', testRouter);
-app.use('/api', router);
-app.use(function(req, res) {
-	res.status(404).send('404: Page not Found');
-});
+var envPort = app.get('port');
 
-app.listen(app.get('port'), function() {
-	console.log('Server listening on port ', app.get('port'));
-});
+app.get('/', express.static('./server'));
 
-module.exports = app;
+app.use(expressJWT({
+  secret: 'fullbuzzle',
+  getToken: function fromHeaderOrQueryString(req){
+    return req.headers['x-access-token'];
+  }
+}).unless({ path: ['/api/mobile/login', '/api/web/login']}));
+
+app.use(function(err, req, res, next){
+  if (err.name === 'UnauthorizedError'){
+    res.status(401).send('invalid authorization token');
+  }
+})
+
+app.use('/api', indexRouter);
+
+app.use(noRoute);
+
+app.listen(envPort, function(){
+  console.log("listening on port " + envPort);
+})

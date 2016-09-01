@@ -4,7 +4,8 @@ webClient/compiled/
 
 server/env/config.js
 
-server/keys/cert.pem
-server/keys/key.pem
+mLab-url.js
+cert.pem
+key.pem
 
 .DS_Store
