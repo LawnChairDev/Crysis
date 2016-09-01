@@ -4,7 +4,7 @@ Crysis is an emergency response application intended for professional settings. 
 
 # Crysis [Mobile]
 
-[Crysis Mobile Demo](https://youtu.be/ncHUnFml5k0)
+[Crysis Mobile Demo](https://youtu.be/ncHUnFmI5k0)
 
 # Crysis [Desktop]
 
