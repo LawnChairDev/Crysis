@@ -7,4 +7,6 @@ server/env/config.js
 server/keys/cert.pem
 server/keys/key.pem
 
+mLab-url.js
+
 .DS_Store
